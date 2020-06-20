@@ -1,0 +1,32 @@
+{
+  "name": "siro-jsbridge",
+  "version": "1.0.15",
+  "description": "移动JSBridge",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "webpack-dev-server --mode=development --config config/webpack.dev.config.js",
+    "build": "webpack --mode=production --config ./config/webpack.pro.config.js"
+  },
+  "author": "liangxh",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:LiangXuHui0628/siro-jsbrider.git"
+  },
+  "dependencies": {
+    "@types/node": "^14.0.13",
+    "lodash": "^4.17.15"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.155",
+    "fork-ts-checker-webpack-plugin": "^5.0.1",
+    "html-webpack-plugin": "^4.3.0",
+    "path": "^0.12.7",
+    "ts-loader": "^7.0.5",
+    "typescript": "^3.9.5",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^4.2.2"
+  }
+}
