@@ -17,4 +17,19 @@ yarn start
 ```
 yarn build
 ```
+# How to use
+
+## In VUE main.js
+```
+import {SRJSBridge} from 'siro-jsbridge'
+Vue.prototype.SRJSBridge = window.SRJSBridge;
+
+then
+
+SRJSBridge.invoke('getBluetoothDevice','getBluetoothDevice',(v)=>{
+    console.log(v);
+});
+```
+
+
 
