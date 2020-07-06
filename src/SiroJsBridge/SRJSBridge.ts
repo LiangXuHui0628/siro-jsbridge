@@ -1,21 +1,22 @@
 import SiroBridge from "./core/SiroBridge";
 
-export class SRJSBridge {
+export default class SRJSBridge {
     // 版本号1.0.0
     version: string ;
 
     siroBridge: SiroBridge ;
 
     constructor() {
-        this.version = '1.0.15';
+        this.version = '1.0.23';
         this.siroBridge = new SiroBridge();
+        this.invoke = this.invoke.bind(this);
         this.bind2Window();
     }
 
     install(Vue) {
         Object.defineProperty(Vue.prototype, 'SRJSBridge', {
             get() {
-                return this;
+                return new SRJSBridge();
               }
         });
     }
@@ -24,11 +25,11 @@ export class SRJSBridge {
         window._handleMessageFromNative = this._handleMessageFromNative;
     }
 
-    invoke(method: any, args?: any, cb?: any) {
-        this.siroBridge.call(method, args, cb);
+    public invoke(method: any, args?: any, cb?: any) {
+       return this.siroBridge.call(method, args, cb);
     }
 
-    _handleMessageFromNative(info:any) {
+    public _handleMessageFromNative(info:any) {
         const arg = JSON.parse(info.data);
         const ret = {
             id: info.callbackId,
@@ -78,18 +79,22 @@ export class SRJSBridge {
        });
     }
 
-    callSyn(ret: any, f: any, arg: any) {
+    public callSyn(ret: any, f: any, arg: any) {
         ret.data = f.apply(this, arg);
         this.siroBridge.call('_dsb.returnValue', ret)
     }
 
-    callAsyn (ret: any, f: any, arg: any) {
+    public callAsyn (ret: any, f: any, arg: any) {
         arg.push((data, complete) => {
             ret.data = data;
             ret.complete = complete!==false;
             this.siroBridge.call("_dsb.returnValue", ret)
         })
         f.apply(this, arg)
+    }
+
+    public getVersion() {
+        return this.version;
     }
 
 }

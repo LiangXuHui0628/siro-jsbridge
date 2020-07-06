@@ -1,11 +1,11 @@
-import { SRJSBridge } from './SiroJsBridge/SRJSBridge'
-export default SRJSBridge;
+import SRJSBridge from './SiroJsBridge/SRJSBridge'
 
 declare global {
   interface Window {
-    SRJSBridge:SRJSBridge,
+    SRJSBridge: SRJSBridge,
     _dsbridge: any,
     _handleMessageFromNative: any,
+    _dswk: any,
     Vue:any,
   }
 }

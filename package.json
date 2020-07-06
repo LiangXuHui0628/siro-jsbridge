@@ -1,6 +1,6 @@
 {
   "name": "siro-jsbridge",
-  "version": "1.0.15",
+  "version": "1.0.23",
   "description": "移动JSBridge",
   "main": "dist/index.js",
   "scripts": {
@@ -11,7 +11,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:LiangXuHui0628/siro-jsbrider.git"
+    "url": "git@github.com:LiangXuHui0628/siro-jsbridge.git"
   },
   "dependencies": {
     "@types/node": "^14.0.13",

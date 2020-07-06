@@ -21,9 +21,14 @@ export default class SiroBridge {
 
     call(method: any, args?: any, cb?: any) {
         let ret ;
-        if (typeof args === 'function') {
-            cb = args;
-            args = {};
+        // if (typeof args === 'function') {
+        //     cb = args;
+        //     args = {};
+        // }
+        for (const key in args) {
+            if (typeof args[key] === 'function') {
+                this.register(key, args[key]);
+            }
         }
         const arg={data:args===undefined?null:args}
         if (typeof cb === 'function') {
@@ -36,7 +41,7 @@ export default class SiroBridge {
         // if in webview that dsBridge provided, call!
         if(window._dsbridge){
            ret = window._dsbridge.call(method, argStr)
-        }else if(navigator.userAgent.indexOf("_dsbridge") !== -1){
+        }else if(window._dswk||navigator.userAgent.indexOf("_dsbridge") !== -1){
            ret = prompt("_dsbridge=" + method, argStr);
         }
        return  JSON.parse(ret||'{}').data
